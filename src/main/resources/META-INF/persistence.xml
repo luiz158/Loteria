@@ -9,10 +9,12 @@
 		<non-jta-data-source>java:/DefaultDS</non-jta-data-source>
 		
 		<class>br.com.bottossi.loteria.domain.Bookmark</class>
+		<class>br.com.bottossi.loteria.domain.Concurso</class>
+		<class>br.com.bottossi.loteria.domain.Dezena</class>			
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 		</properties>
