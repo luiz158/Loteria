@@ -1,41 +1,92 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form prependId="false">
+		<h:form id="form" prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{concursoEditMB.insert}"
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{concursoEditMB.insert}"
 						rendered="#{!concursoEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.save']}" action="#{concursoEditMB.update}"
+					<p:commandButton value="#{messages['button.save']}"
+						action="#{concursoEditMB.update}"
 						rendered="#{concursoEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{concursoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{concursoEditMB.delete}" immediate="true"
-							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					<p:commandButton value="#{messages['button.delete']}"
+						onclick="confirmation.show()"
+						rendered="#{concursoEditMB.updateMode}" type="button"
+						immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}"
+						showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert"
+						widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}"
+							action="#{concursoEditMB.delete}" immediate="true" ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}"
+							onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
 
 			<br />
 
-			<p:fieldset legend="#{messages['concurso.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fields" columns="3">
-					<h:outputLabel value="#{messages['concurso.label.id']}: " for="id" styleClass="text-input" />
-					<h:outputText id="id" value="#{concursoEditMB.bean.id}" />
-					<p:message for="id" />
+			<p:fieldset legend="#{messages['concurso.label']}" toggleable="true"
+				toggleSpeed="500">
+				<h:panelGrid id="fields" columns="1">
 
-					<h:outputLabel value="#{messages['concurso.label.numero']}: " for="numero" styleClass="text-input" />
+					<h:outputLabel value="#{messages['concurso.label.numero']}: "
+						for="numero" styleClass="text-input" />
 					<h:inputText id="numero" value="#{concursoEditMB.bean.numero}"
 						title="#{messages['concurso.alt.numero']}" />
 					<p:message for="numero" />
-					
+
 				</h:panelGrid>
+
 			</p:fieldset>
+
+			<p:panel header="Adicione uma dezena">
+				<h:panelGrid columns="2" id="grid">
+					<h:outputLabel value="Valor : *" for="txt_title"></h:outputLabel>
+					<p:inputText id="txt_title"
+						value="#{concursoEditMB.dezena.valor}" />
+
+					<p:commandButton id="btn_add" value="Add" update="dezenas @parent" ajax="false"
+						action="#{concursoEditMB.reinit}"> 
+
+						<p:collector value="#{concursoEditMB.dezena}"
+							addTo="#{concursoEditMB.bean.dezenas}" />
+					</p:commandButton>
+				</h:panelGrid>
+			</p:panel>
+
+			<p:outputPanel id="dezenas">
+				<p:dataTable id="dezenasTable"
+					value="#{concursoEditMB.bean.dezenas}" var="dezena">
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Valor" />
+						</f:facet>
+						<h:outputText value="#{dezena.valor}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Operation" />
+						</f:facet>
+						<p:commandLink value="Remove" update=":form:dezenas"
+							process=":form:dezenas">
+							<p:collector value="#{dezena}"
+								removeFrom="#{concursoEditMB.bean.dezenas}" />
+						</p:commandLink>
+					</p:column>
+
+				</p:dataTable>
+			</p:outputPanel>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

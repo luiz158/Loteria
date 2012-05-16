@@ -1,48 +1,27 @@
 package br.com.bottossi.loteria.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-@Entity
 public class Concurso implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	@Column
+
 	private Integer numero;
-	
-	@OneToMany(mappedBy="concurso", cascade=CascadeType.ALL)
-	private Set<Dezena> dezenas;
-		
+
+	private Set<Integer> dezenas = new HashSet<Integer>();
 
 	public Concurso() {
 		super();
 	}
-	
-	public Concurso(Integer numero, Set<Dezena> dezenas) {
-		super();		
+
+	public Concurso(Integer numero, Set<Integer> dezenas) {
+		super();
 		this.numero = numero;
 		this.dezenas = dezenas;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	}	
 
 	public Integer getNumero() {
 		return numero;
@@ -51,15 +30,13 @@ public class Concurso implements Serializable {
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
-		
-	public Set<Dezena> getDezenas() {
+
+	public Set<Integer> getDezenas() {
 		return dezenas;
 	}
-	
-	public void setDezenas(Set<Dezena> dezenas) {
+
+	public void setDezenas(Set<Integer> dezenas) {
 		this.dezenas = dezenas;
 	}
-		
-	
-	
+
 }
