@@ -20,6 +20,11 @@
 					url="/concurso_list.jsf" />
 			</p:submenu>
 
+			<p:submenu label="#{messages['menu.dezena']}">
+				<p:menuitem value="#{messages['menu.menuitem.list']}"
+					url="/dezena_list.jsf" />
+			</p:submenu>
+
 			<p:menuitem value="#{messages['menu.menuitem.quit']}"
 				url="http://www.frameworkdemoiselle.gov.br/"
 				action="#{securityContext.logout}" />

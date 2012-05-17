@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import br.com.bottossi.loteria.business.ConcursoBC;
 import br.com.bottossi.loteria.domain.Concurso;
-import br.com.bottossi.loteria.domain.Dezena;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -17,17 +16,7 @@ public class ConcursoEditMB extends AbstractEditPageBean<Concurso, Long> {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ConcursoBC concursoBC;
-	
-	private Dezena dezena = new Dezena();		
-
-	public Dezena getDezena() {
-		return dezena;
-	}
-
-	public void setDezena(Dezena dezena) {
-		this.dezena = dezena;
-	}
+	private ConcursoBC concursoBC;	
 
 	@Override
 	@Transactional
@@ -53,11 +42,6 @@ public class ConcursoEditMB extends AbstractEditPageBean<Concurso, Long> {
 	@Override
 	protected void handleLoad() {
 		setBean(this.concursoBC.load(getId()));
-	}
-	
-	public String reinit() {
-		this.dezena = new Dezena();
-		return null;
 	}
 
 }

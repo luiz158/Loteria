@@ -45,47 +45,7 @@
 
 				</h:panelGrid>
 
-			</p:fieldset>
-
-			<p:panel header="Adicione uma dezena">
-				<h:panelGrid columns="2" id="grid">
-					<h:outputLabel value="Valor : *" for="txt_title"></h:outputLabel>
-					<p:inputText id="txt_title"
-						value="#{concursoEditMB.dezena.valor}" />
-
-					<p:commandButton id="btn_add" value="Add" update="dezenas @parent" ajax="false"
-						action="#{concursoEditMB.reinit}"> 
-
-						<p:collector value="#{concursoEditMB.dezena}"
-							addTo="#{concursoEditMB.bean.dezenas}" />
-					</p:commandButton>
-				</h:panelGrid>
-			</p:panel>
-
-			<p:outputPanel id="dezenas">
-				<p:dataTable id="dezenasTable"
-					value="#{concursoEditMB.bean.dezenas}" var="dezena">
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Valor" />
-						</f:facet>
-						<h:outputText value="#{dezena.valor}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Operation" />
-						</f:facet>
-						<p:commandLink value="Remove" update=":form:dezenas"
-							process=":form:dezenas">
-							<p:collector value="#{dezena}"
-								removeFrom="#{concursoEditMB.bean.dezenas}" />
-						</p:commandLink>
-					</p:column>
-
-				</p:dataTable>
-			</p:outputPanel>
+			</p:fieldset>		
 
 		</h:form>
 	</ui:define>

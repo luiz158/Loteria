@@ -27,10 +27,6 @@
 				<p:column style="width:5%;">
 					<h:selectBooleanCheckbox value="#{concursoListMB.selection[bean.id]}" />
 				</p:column>
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['concurso.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
 				<p:column sortBy="#{bean.numero}">
 					<f:facet name="header">#{messages['concurso.label.numero']}</f:facet>
 					<h:commandLink action="#{concursoListMB.getNextView}" actionListener="#{concursoListMB.clear}">
@@ -38,10 +34,7 @@
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
-				<p:column>
-					<f:facet name="header">#{messages['concurso.label.dezenas']}</f:facet>
-					<h:outputText value="#{bean.dezenas}" />										
-				</p:column>
+
 			</p:dataTable>
 		</h:form>
 	</ui:define>

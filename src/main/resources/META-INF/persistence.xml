@@ -5,8 +5,8 @@
 	<!-- If you are using jboss6 with non JTA transaction then use this persistence-unit -->
 	<!--
 	-->
-	<persistence-unit name="bookmark-ds" transaction-type="RESOURCE_LOCAL">
-		<non-jta-data-source>java:/DefaultDS</non-jta-data-source>
+	<persistence-unit name="loteria-ds" transaction-type="RESOURCE_LOCAL">
+		<non-jta-data-source>java:/OracleDS</non-jta-data-source>
 		
 		<class>br.com.bottossi.loteria.domain.Bookmark</class>
 		<class>br.com.bottossi.loteria.domain.Concurso</class>
@@ -14,23 +14,25 @@
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.format_sql" value="true" />			
 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 		</properties>
 	</persistence-unit>
 	
+	
 	<!-- If you are using jboss6 with JTA transaction then use this persistence-unit -->
 	<!--
-	<persistence-unit name="bookmark-ds" transaction-type="JTA">
-		<jta-data-source>java:/DefaultDS</jta-data-source>
+	
+	<persistence-unit name="loteria-ds" transaction-type="JTA">
+		<jta-data-source>java:/OracleDS</jta-data-source>
 		
 		<class>br.com.bottossi.loteria.domain.Bookmark</class>
+		<class>br.com.bottossi.loteria.domain.Concurso</class>
+		<class>br.com.bottossi.loteria.domain.Dezena</class>	
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="false" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 		</properties>
 	</persistence-unit>
