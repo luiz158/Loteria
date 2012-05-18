@@ -11,12 +11,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_dezena")
+@Table(name = "TB_DEZENA")
 public class Dezena implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(name="DEZ_ID")
 	private Integer id;
 
 	public Integer getId() {
@@ -31,4 +32,9 @@ public class Dezena implements Serializable {
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return id.toString();		
+	}
+	
 }
