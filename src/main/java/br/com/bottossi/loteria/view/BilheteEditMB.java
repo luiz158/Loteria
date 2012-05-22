@@ -10,9 +10,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
-import br.com.bottossi.loteria.business.ConcursoBC;
+import br.com.bottossi.loteria.business.BilheteBC;
 import br.com.bottossi.loteria.business.DezenaBC;
-import br.com.bottossi.loteria.domain.Concurso;
+import br.com.bottossi.loteria.domain.Bilhete;
 import br.com.bottossi.loteria.domain.Dezena;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.annotation.ViewScoped;
@@ -22,13 +22,13 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @ViewScoped
-@PreviousView("/concurso_list.xhtml")
-public class ConcursoEditMB extends AbstractEditPageBean<Concurso, Long> {
+@PreviousView("/bilhete_list.xhtml")
+public class BilheteEditMB extends AbstractEditPageBean<Bilhete, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private ConcursoBC concursoBC;	
+	private BilheteBC bilheteBC;	
 	
 	@Inject
 	private DezenaBC dezenaBC;
@@ -68,7 +68,7 @@ public class ConcursoEditMB extends AbstractEditPageBean<Concurso, Long> {
 	@Override
 	@Transactional
 	public String delete() {
-		this.concursoBC.delete(getId());
+		this.bilheteBC.delete(getId());
 		return getPreviousView();
 	}
 
@@ -76,7 +76,7 @@ public class ConcursoEditMB extends AbstractEditPageBean<Concurso, Long> {
 	@Transactional
 	public String insert() {		
 		loadDezenasSelecionadas();
-		this.concursoBC.insert(getBean());
+		this.bilheteBC.insert(getBean());
 		return getPreviousView();
 	}
 
@@ -84,13 +84,13 @@ public class ConcursoEditMB extends AbstractEditPageBean<Concurso, Long> {
 	@Transactional
 	public String update() {
 		loadDezenasSelecionadas();
-		this.concursoBC.update(getBean());
+		this.bilheteBC.update(getBean());
 		return getPreviousView();
 	}
 
 	@Override
 	protected void handleLoad() {
-		setBean(this.concursoBC.load(getId()));		
+		setBean(this.bilheteBC.load(getId()));		
 		loadDezenasFromBean();
 	}
 	

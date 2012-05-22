@@ -5,27 +5,26 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.bottossi.loteria.business.BilheteBC;
+import br.com.bottossi.loteria.domain.Bilhete;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
-import br.com.bottossi.loteria.business.BookmarkBC;
-import br.com.bottossi.loteria.domain.Bookmark;
-
 @ViewController
-@NextView("/bookmark_edit.xhtml")
-@PreviousView("/bookmark_list.xhtml")
-public class BookmarkListMB extends AbstractListPageBean<Bookmark, Long> {
+@NextView("/bilhete_edit.xhtml")
+@PreviousView("/bilhete_list.xhtml")
+public class BilheteListMB extends AbstractListPageBean<Bilhete, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private BookmarkBC bc;
+	private BilheteBC bc;
 
 	@Override
-	protected List<Bookmark> handleResultList() {
+	protected List<Bilhete> handleResultList() {
 		return this.bc.findAll();
 	}
 

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_DEZENA")
-public class Dezena implements Serializable {
+public class Dezena implements Serializable, Comparable<Dezena> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,8 +33,13 @@ public class Dezena implements Serializable {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() {		
 		return id.toString();		
+	}
+
+	@Override
+	public int compareTo(Dezena o) {
+		return this.getId().compareTo(o.getId());
 	}
 	
 }

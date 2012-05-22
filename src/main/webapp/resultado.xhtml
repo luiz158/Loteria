@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form>
+
+			<p:dataTable id="concursosTable" var="concurso"
+				value="#{resultadoMB.concursos}">
+
+				<f:facet name="header">#{messages['resultado.list.table.title']}</f:facet>
+
+				<p:columnGroup type="header">
+					<p:row>
+						<p:column rowspan="2"
+							headerText="#{messages['concurso.list.table.title']}"
+							sortBy="#{concurso.numero}" />
+						<p:column colspan="2" headerText="#{messages['bilhete.label']}" />
+					</p:row>
+
+					<p:row>
+						<p:column
+							headerText="#{messages['resultado.list.table.dezenas-acertadas']}" />
+						<p:column
+							headerText="#{messages['resultado.list.table.total-acertos']}" />
+					</p:row>
+
+				</p:columnGroup>
+
+				<p:subTable var="resultado"
+					value="#{resultadoMB.resultados[concurso]}">
+										
+					<f:facet name="header">
+						<h:outputText value="#{concurso.numero}" /> - <h:outputText value="#{concurso.dezenas}" converter="br.com.bottossi.loteria.view.converter.DezenaConverter" />
+					</f:facet>
+
+					<p:column>#{resultado.bilhete.id}</p:column>
+
+					<!-- <p:column>#{resultado.dezenasAcertadas}</p:column> -->
+
+					<p:column>
+						<h:outputText value="#{resultado.dezenasAcertadas}">
+							<f:converter converterId="br.com.bottossi.loteria.view.converter.DezenaConverter" />
+						</h:outputText>
+					</p:column>
+
+					<p:column>#{resultado.totalDeAcertos}</p:column>
+
+				</p:subTable>
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
