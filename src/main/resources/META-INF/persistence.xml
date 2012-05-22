@@ -6,7 +6,7 @@
 	<!--
 	-->
 	<persistence-unit name="loteria-ds" transaction-type="RESOURCE_LOCAL">
-		<non-jta-data-source>java:/OracleDS</non-jta-data-source>
+		<non-jta-data-source>java:/MysqlDS</non-jta-data-source>
 		 			
 		<class>br.com.bottossi.loteria.domain.Concurso</class>
 		<class>br.com.bottossi.loteria.domain.Dezena</class>			
@@ -15,7 +15,8 @@
 
 		<properties>
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />			
+			<property name="hibernate.format_sql" value="true" />	
+			<property name="hibernate.hbm2ddl.auto" value ="create-drop" />		
 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
 		</properties>
 	</persistence-unit>

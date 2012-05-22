@@ -1,6 +1,7 @@
 package br.com.bottossi.loteria.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,19 +14,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "TB_CONCURSO")
-@SequenceGenerator(name = "SEQ_CONCURSO_GEN", sequenceName = "seq_concurso")
+//@SequenceGenerator(name = "SEQ_CONCURSO_GEN", sequenceName = "seq_concurso")
 public class Concurso implements Serializable, Comparable<Concurso> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "CONC_ID")	
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CONCURSO_GEN")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CONCURSO_GEN")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "CONC_NUMERO", nullable = false)
@@ -35,6 +38,9 @@ public class Concurso implements Serializable, Comparable<Concurso> {
 	@JoinTable(name = "TB_CONCURSO_DEZENA", joinColumns = { @JoinColumn(name = "CONC_ID", referencedColumnName = "CONC_ID") }, inverseJoinColumns = { @JoinColumn(name = "DEZ_ID", referencedColumnName = "DEZ_ID") })
 	@OrderBy("id")
 	private Set<Dezena> dezenas;
+	
+	@Temporal(value=TemporalType.DATE)
+	private Date dataNascimento;
 
 	public Long getId() {
 		return id;

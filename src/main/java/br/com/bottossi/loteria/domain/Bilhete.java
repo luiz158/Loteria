@@ -12,19 +12,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_BILHETE")
-@SequenceGenerator(name = "SEQ_BILHETE_GEN", sequenceName = "seq_bilhete")
+//@SequenceGenerator(name = "SEQ_BILHETE_GEN", sequenceName = "seq_bilhete")
 public class Bilhete {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "BILH_ID")	
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_BILHETE_GEN")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_BILHETE_GEN")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToMany(fetch = FetchType.LAZY)		
